@@ -1,5 +1,6 @@
 const CHANGE_TASK_TEXT = "CHANGE_TASK_TEXT";
 const ADD_TASK = "ADD_TASK";
+const COMPLETED_TASK = "COMPLETED_TASK";
 
 let initialState = {
   tasks: [
@@ -30,6 +31,15 @@ const TodoListReducer = (state = initialState, action) => {
           },
         ],
       };
+    case COMPLETED_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload
+            ? { ...task, completed: !task.completed }
+            : task
+        ),
+      };
     default:
       return state;
   }
@@ -45,6 +55,13 @@ export const ChangeTaskText = (text) => {
 export const addTask = () => {
   return {
     type: ADD_TASK,
+  };
+};
+
+export const completedTask = (id) => {
+  return {
+    type: COMPLETED_TASK,
+    payload: id,
   };
 };
 
