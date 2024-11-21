@@ -1,12 +1,16 @@
 import { useDispatch } from "react-redux";
 import "./Task.css";
-import { completedTask } from "../../../Redux/TodoListReducer";
+import { completedTask, removeTask } from "../../../Redux/TodoListReducer";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
 
   const onCompletedTask = () => {
     dispatch(completedTask(task.id));
+  };
+
+  const onRemoveTask = () => {
+    dispatch(removeTask(task.id));
   };
 
   return (
@@ -17,7 +21,7 @@ const Task = ({ task }) => {
         onChange={onCompletedTask}
       />
       <p>{task.text}</p>
-      <button>Remove</button>
+      <button onClick={onRemoveTask}>Remove</button>
     </div>
   );
 };
