@@ -13,7 +13,9 @@ const TodoList = () => {
   const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
-    dispatch(ChangeTaskText(e.target.value));
+    // trimStart()
+    // Видаляємо початкові пропуски із введеного тексту, зберігаючи можливість додавати пропуски в середині та наприкінці
+    dispatch(ChangeTaskText(e.target.value.trimStart()));
   };
 
   const onClickHandler = () => {

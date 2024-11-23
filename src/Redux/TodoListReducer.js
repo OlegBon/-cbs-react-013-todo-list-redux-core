@@ -22,6 +22,11 @@ const TodoListReducer = (state = initialState, action) => {
         taskText: action.payload,
       };
     case ADD_TASK:
+      // trim() для видалення зайвих пробілів на початку та наприкінці
+      // Це дає змогу запобігти додаванню таски тільки з пробілів
+      if (state.taskText.trim() === "") {
+        return state;
+      }
       return {
         ...state,
         tasks: [
